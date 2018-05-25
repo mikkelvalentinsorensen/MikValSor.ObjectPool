@@ -51,12 +51,16 @@ namespace MikValSor.Collections
 		}
 	}
 
-	public class ObjectPool<T>
+	/// <summary>
+	///		Class for 
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	public class ObjectPool<T> : IDisposable
 	{
 		private readonly Func<T> ObjectGenerator;
-		private readonly ConcurrentBag<T> Objects = new ConcurrentBag<T>();
-		private object CountLock = new object();
-		public int Count { get; private set; } = 0;
+		private readonly ConcurrentBag<T> FreeObjects = new ConcurrentBag<T>();
+		private readonly ConcurrentBag<T> AllObjects = new ConcurrentBag<T>();
+		public int Count => AllObjects.Count;
 		public int Limit { get; private set; }
 
 		public ObjectPool(Func<T> objectGenerator, int limit = 500)
@@ -66,14 +70,11 @@ namespace MikValSor.Collections
 
 		private T Take()
 		{
-			if (Objects.TryTake(out var item)) return item;
+			if (FreeObjects.TryTake(out var item)) return item;
 
-			lock (CountLock)
-			{
-				if (Count >= Limit) throw new ObjectPoolLimitException(this);
-				Count++;
-			}
-			return ObjectGenerator();
+			var newObject = ObjectGenerator();
+			AllObjects.Add(newObject);
+			return newObject;
 		}
 
 		public void Use(Action<T> action)
@@ -108,7 +109,18 @@ namespace MikValSor.Collections
 
 		private void Put(T item)
 		{
-			Objects.Add(item);
+			FreeObjects.Add(item);
+		}
+
+		public void Dispose()
+		{
+			while (AllObjects.TryTake(out var t))
+			{
+				if (t is IDisposable d)
+				{
+					d.Dispose();
+				}
+			}
 		}
 	}
 }
