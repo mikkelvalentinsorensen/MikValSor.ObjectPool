@@ -11,7 +11,9 @@ static void Main(string[] args)
 
 void Example()
 {
-	var pool = new MikValSor.Collections.ObjectPool<System.Collections.Generic.List<int>>(() => new System.Collections.Generic.List<int>());
+	var pool = new MikValSor.Collections.ObjectPool<System.Collections.Generic.List<int>>(
+		() => new System.Collections.Generic.List<int>()
+	);
 
 	// Create a high demand for objects.
 	System.Threading.Tasks.Parallel.For(0, 1000000, (i, loopState) =>
