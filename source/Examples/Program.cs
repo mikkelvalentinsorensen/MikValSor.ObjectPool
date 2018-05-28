@@ -1,7 +1,14 @@
-.NET Libaray for Object pools. Object pools can improve application performance in situations where you require multiple instances of a class and the class is expensive to create or destroy. When a client program requests a new object, the object pool first attempts to provide one that has already been created and returned to the pool. If none is available, only then is a new object created.
+﻿class Program
+{
 
-## Example:
-```cs
+static void Main(string[] args)
+{
+	var program = new Program();
+	program.Example();
+}
+
+
+
 void Example()
 {
 	var pool = new MikValSor.Collections.ObjectPool<System.Collections.Generic.List<int>>(() => new System.Collections.Generic.List<int>());
@@ -21,4 +28,7 @@ void Example()
 	Output:
 	Pool Count: 8
 **/
-```
+
+
+
+}
