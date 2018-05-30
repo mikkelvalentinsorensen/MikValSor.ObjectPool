@@ -1,4 +1,6 @@
-.NET Libaray for Object pools. Object pools can improve application performance in situations where you require multiple instances of a class and the class is expensive to create or destroy. When a client program requests a new object, the object pool first attempts to provide one that has already been created and returned to the pool. If none is available, only then is a new object created.
+.NET Libaray for Object pools. Object pools can improve application performance in situations where you require multiple instances of a class and the class is expensive to create or destroy. When a client program requests a new object, the object pool first attempts to provide one that has already been created and returned to the pool. If none is available, only then is a new object created.Hashing
+
+Nuget package: [https://www.nuget.org/packages/MikValSor.ObjectPool](https://www.nuget.org/packages/MikValSor.ObjectPool)
 
 ## Example:
 ```cs
