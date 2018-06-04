@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
-    <RootNamespace>MikValSor.ObjectPool</RootNamespace>
+    <RootNamespace>MikValSor.Collections</RootNamespace>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Mikkel Valentin Sørensen</Authors>

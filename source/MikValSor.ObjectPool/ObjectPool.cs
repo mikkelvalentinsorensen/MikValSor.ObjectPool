@@ -38,9 +38,9 @@ namespace MikValSor.Collections
 		public ObjectPool(Func<T> objectGenerator, Func<T, Tshim> shimGenerator, int limit = 500)
 		{
 			inner = new ObjectPool<T>(objectGenerator, limit);
+			inner.OnObjectCreated += (sender, args)=> OnObjectCreated?.Invoke(this, new CreatedObjectEventArgs<T, Tshim>(this));
 			ShimGenerator = shimGenerator ?? throw new ArgumentNullException(nameof(shimGenerator));
 		}
-
 
 		/// <summary>
 		///		Function for using a shimmed instance of object in pool.
@@ -64,8 +64,6 @@ namespace MikValSor.Collections
 				}
 			});
 		}
-
-
 
 		/// <summary>
 		///		Function for using a shimmed instance of object in pool.
@@ -92,6 +90,11 @@ namespace MikValSor.Collections
 				}
 			});
 		}
+
+		/// <summary>
+		///		Event invoked when new Object is created in pool.
+		/// </summary>
+		public event EventHandler<CreatedObjectEventArgs<T, Tshim>> OnObjectCreated;
 	}
 
 	/// <summary>
@@ -134,6 +137,8 @@ namespace MikValSor.Collections
 
 			var newObject = ObjectGenerator();
 			AllObjects.Add(newObject);
+			OnObjectCreated?.Invoke(this, new CreatedObjectEventArgs<T>(this));
+
 			return newObject;
 		}
 
@@ -203,5 +208,10 @@ namespace MikValSor.Collections
 				}
 			}
 		}
+
+		/// <summary>
+		///		Event invoked when new Object is created in pool.
+		/// </summary>
+		public event EventHandler<CreatedObjectEventArgs<T>> OnObjectCreated;
 	}
 }
