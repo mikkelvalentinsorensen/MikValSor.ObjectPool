@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ObjectPool</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mikkelvalentinsorensen/MikValSor.ObjectPool</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
-    <PackageTags>ObjectPool MikValSor</PackageTags>
+    <PackageTags>ObjectPool Object Pool MikValSor</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
     <Description>.NET Libaray for Object pools. Object pools can improve application performance in situations where you require multiple instances of a class and the class is expensive to create or destroy. When a client program requests a new object, the object pool first attempts to provide one that has already been created and returned to the pool. If none is available, only then is a new object created.</Description>
     <Copyright>Mikkel Valentin Sørensen 2018</Copyright>
