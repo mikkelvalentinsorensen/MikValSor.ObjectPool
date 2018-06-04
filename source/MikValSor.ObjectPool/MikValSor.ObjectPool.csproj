@@ -16,8 +16,12 @@
     <Copyright>Mikkel Valentin Sørensen 2018</Copyright>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <Version>1.0.0</Version>
-    <PackageReleaseNotes>1.0.0 - Initial release.</PackageReleaseNotes>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>v1.0.1
+- Added OnObjectCreated event.
+
+v1.0.0
+ - Initial release.</PackageReleaseNotes>
     <FileVersion>1.0.0.0</FileVersion>
     <PackageIconUrl>https://raw.githubusercontent.com/mikkelvalentinsorensen/MikValSor/master/icon/icon.png</PackageIconUrl>
   </PropertyGroup>
